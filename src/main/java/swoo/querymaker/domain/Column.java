@@ -22,15 +22,15 @@ public class Column {
         sb.append(name).append(" ").append(type);
 
         if (size != null) {
-            sb.append("(").append(size).append(") ");
+            sb.append("(").append(size).append(")");
         }
 
         if (notNull) {
-            sb.append("not null");
+            sb.append(" not null");
         }
 
         if (primaryKey) {
-            sb.append("primary key");
+            sb.append(" primary key");
         }
 
         return sb.toString();

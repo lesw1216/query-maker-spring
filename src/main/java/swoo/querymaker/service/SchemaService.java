@@ -17,7 +17,7 @@ public class SchemaService {
         String prefix = "CREATE TABLE ";
 
         StringBuilder sb = new StringBuilder();
-        sb.append(prefix).append(tableName).append(" ( ");
+        sb.append(prefix).append(tableName).append(" (");
 
         ArrayList<String> arr = new ArrayList<>();
         for (Column column : columns) {

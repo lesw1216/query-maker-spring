@@ -33,7 +33,7 @@ class SchemaServiceTest {
         String tableQuery = schemaService.createTableQuery(tableName, columns);
 
         // then
-        String expectQuery = "CREATE TABLE " + tableName + " ( " + column1.extractColumnDefinition() +
+        String expectQuery = "CREATE TABLE " + tableName + " (" + column1.extractColumnDefinition() +
                 ", " + column2.extractColumnDefinition() + ");";
         assertEquals(expectQuery, tableQuery);
     }
