@@ -9,8 +9,8 @@ import java.util.List;
 @Service
 public class SchemaService {
 
-    public String createSchemaQuery(String tableName) {
-        return "CREATE DATABASE " + tableName + ";";
+    public String createSchemaQuery(String schemaName) {
+        return "CREATE DATABASE " + schemaName + ";";
     }
 
     public String createTableQuery(String tableName, List<Column> columns) {

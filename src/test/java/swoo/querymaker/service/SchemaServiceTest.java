@@ -15,11 +15,11 @@ class SchemaServiceTest {
 
     @Test
     void success_create_schema_query() {
-        String tableName = "todo_list";
+        String schemaName = "todo_list";
 
-        String schemaQuery = schemaService.createSchemaQuery(tableName);
+        String schemaQuery = schemaService.createSchemaQuery(schemaName);
 
-        assertEquals("CREATE DATABASE " + tableName + ";", schemaQuery);
+        assertEquals("CREATE DATABASE " + schemaName + ";", schemaQuery);
     }
 
     @Test
