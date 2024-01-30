@@ -10,5 +10,9 @@ public enum ColumnDataType {
     SMALLINT,
     DATE,
     TIME,
-    DATETIME
+    DATETIME;
+
+    public static ColumnDataType[] toList() {
+        return ColumnDataType.values();
+    }
 }
