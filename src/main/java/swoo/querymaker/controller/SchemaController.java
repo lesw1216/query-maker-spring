@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import swoo.querymaker.domain.Column;
 import swoo.querymaker.dto.ColumnsDto;
 import swoo.querymaker.dto.RestResponse;
+import swoo.querymaker.enums.ColumnDataType;
 import swoo.querymaker.service.SchemaService;
 
 import java.util.List;
@@ -46,6 +47,21 @@ public class SchemaController {
                 .httpStatus(HttpStatus.OK)
                 .message("success table create query")
                 .data(tableQuery)
+                .build();
+
+        return new ResponseEntity<>(response, response.getHttpStatus());
+    }
+
+    @GetMapping("/tables")
+    public ResponseEntity<RestResponse<Object>> getTableDefinition() {
+        log.info("getTableDefinition call");
+        ColumnDataType[] columnDataTypes = ColumnDataType.toList();
+
+        RestResponse<Object> response = RestResponse.builder()
+                .code(HttpStatus.OK.value())
+                .httpStatus(HttpStatus.OK)
+                .message("success get columns types")
+                .data(columnDataTypes)
                 .build();
 
         return new ResponseEntity<>(response, response.getHttpStatus());
