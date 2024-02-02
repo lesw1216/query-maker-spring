@@ -11,8 +11,6 @@ import swoo.querymaker.dto.SchemaDto;
 import swoo.querymaker.enums.ColumnDataType;
 import swoo.querymaker.service.SchemaService;
 
-import java.util.Map;
-
 @Slf4j
 @RestController
 @RequestMapping("/api")
@@ -39,7 +37,7 @@ public class SchemaController {
     }
 
     @PostMapping("/tables")
-    public ResponseEntity<RestResponse<Object>> createTable(@RequestBody ColumnsDto columns) {
+    public ResponseEntity<RestResponse<Object>> createTable(@RequestBody @Validated ColumnsDto columns) {
         String tableQuery = schemaService.createTableQuery(columns.getTableName(), columns.getColumns());
 
         RestResponse<Object> response = RestResponse.builder()

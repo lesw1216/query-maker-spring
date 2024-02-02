@@ -1,27 +1,26 @@
 package swoo.querymaker.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import swoo.querymaker.enums.ColumnDataType;
 
+@Builder
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Column {
     private String name;
-    private ColumnDataType type;
-    private Integer size;
-    private boolean primaryKey;
-    private boolean notNull;
+    private String type;
+    private String size;
+    private Boolean primaryKey;
+    private Boolean notNull;
 
     public String extractColumnDefinition() {
         StringBuilder sb = new StringBuilder();
         sb.append(name).append(" ").append(type);
 
-        if (size != null) {
+        if (size != null && !size.equals("0")) {
             sb.append("(").append(size).append(")");
         }
 
