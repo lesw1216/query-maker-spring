@@ -3,14 +3,14 @@ package swoo.querymaker.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import swoo.querymaker.domain.Column;
 import swoo.querymaker.dto.ColumnsDto;
 import swoo.querymaker.dto.RestResponse;
+import swoo.querymaker.dto.SchemaDto;
 import swoo.querymaker.enums.ColumnDataType;
 import swoo.querymaker.service.SchemaService;
 
-import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -25,8 +25,8 @@ public class SchemaController {
     }
 
     @PostMapping("/schemas")
-    public ResponseEntity<RestResponse<Object>> createSchema(@RequestBody Map<String, String> SchemaName) {
-        String schemaQuery = schemaService.createSchemaQuery(SchemaName.get("schemaName"));
+    public ResponseEntity<RestResponse<Object>> createSchema(@RequestBody @Validated SchemaDto SchemaName) {
+        String schemaQuery = schemaService.createSchemaQuery(SchemaName.getSchemaName());
 
         RestResponse<Object> response = RestResponse.builder()
                 .code(HttpStatus.OK.value())
@@ -49,6 +49,7 @@ public class SchemaController {
                 .data(tableQuery)
                 .build();
 
+        log.info("[POST][/tables][CREATE TABLE QUERY][{}]", tableQuery);
         return new ResponseEntity<>(response, response.getHttpStatus());
     }
 

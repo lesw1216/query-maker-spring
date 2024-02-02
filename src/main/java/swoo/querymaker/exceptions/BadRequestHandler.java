@@ -1,23 +1,18 @@
 package swoo.querymaker.exceptions;
 
-import jakarta.validation.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import swoo.querymaker.dto.RestResponse;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
-import java.util.Objects;
 
 @Slf4j
 @RestControllerAdvice
