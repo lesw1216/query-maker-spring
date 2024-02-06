@@ -26,8 +26,8 @@ class SchemaServiceTest {
     void success_create_table_query() {
         // when
         String tableName = "todolist";
-        Column column1 = new Column("id", ColumnDataType.BIGINT, 10, true, false);
-        Column column2 = new Column("content", ColumnDataType.VARCHAR, 200, false, true);
+        Column column1 = new Column("id", "BIGINT", "10", true, false);
+        Column column2 = new Column("content", "VARCHAR", "200", false, true);
         List<Column> columns = List.of(column1, column2);
         // given
         String tableQuery = schemaService.createTableQuery(tableName, columns);
