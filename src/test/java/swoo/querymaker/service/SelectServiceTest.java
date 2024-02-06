@@ -30,7 +30,7 @@ class SelectServiceTest {
             arr.add(columnName.extractNameAndAsName());
         }
         String joined = String.join(", ", arr);
-        assertEquals("SELECT ".concat(joined).concat(" from ").concat(tableName), defaultSelectQuery);
+        assertEquals("SELECT ".concat(joined).concat(" FROM ").concat(tableName), defaultSelectQuery);
     }
 
     @Test
