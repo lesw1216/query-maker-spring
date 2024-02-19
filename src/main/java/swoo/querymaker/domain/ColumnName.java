@@ -11,7 +11,7 @@ public class ColumnName {
     private String asName;
 
     public String extractNameAndAsName() {
-        if (asName != null) {
+        if (asName != null && !asName.isEmpty()) {
             return name.concat(" as ").concat(asName);
         }
 
