@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import swoo.querymaker.dto.ColumnOptionsDto;
 import swoo.querymaker.dto.ColumnsDto;
 import swoo.querymaker.dto.RestResponse;
 import swoo.querymaker.dto.SchemaDto;
@@ -22,7 +23,7 @@ public class SchemaController {
         this.schemaService = schemaService;
     }
 
-    @PostMapping("/schemas")
+    @PostMapping("/ddl/creation/schema")
     public ResponseEntity<RestResponse<Object>> createSchema(@RequestBody @Validated SchemaDto SchemaName) {
         String schemaQuery = schemaService.createSchemaQuery(SchemaName.getSchemaName());
 
@@ -36,8 +37,9 @@ public class SchemaController {
         return new ResponseEntity<>(response, response.getHttpStatus());
     }
 
-    @PostMapping("/tables")
-    public ResponseEntity<RestResponse<Object>> createTable(@RequestBody @Validated ColumnsDto columns) {
+    @PostMapping("/ddl/creation/table")
+    public ResponseEntity<RestResponse<Object>> createTable(@RequestBody @Validated ColumnsDto columns,
+                                                            @RequestBody ColumnOptionsDto columnOptions) {
         String tableQuery = schemaService.createTableQuery(columns.getTableName(), columns.getColumns());
 
         RestResponse<Object> response = RestResponse.builder()
@@ -47,11 +49,11 @@ public class SchemaController {
                 .data(tableQuery)
                 .build();
 
-        log.info("[POST][/tables][CREATE TABLE QUERY][{}]", tableQuery);
+        log.info("[POST][/ddl/creation/table][CREATE TABLE QUERY][{}]", tableQuery);
         return new ResponseEntity<>(response, response.getHttpStatus());
     }
 
-    @GetMapping("/tables")
+    @GetMapping("/ddl/creation/table/types")
     public ResponseEntity<RestResponse<Object>> getTableDefinition() {
         log.info("getTableDefinition call");
         ColumnDataType[] columnDataTypes = ColumnDataType.toList();

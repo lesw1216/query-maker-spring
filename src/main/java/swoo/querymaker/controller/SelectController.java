@@ -23,7 +23,7 @@ public class SelectController {
         this.selectService = selectService;
     }
 
-    @PostMapping("/selects")
+    @PostMapping("/dml/selects")
     public ResponseEntity<RestResponse<Object>> createDefaultSelect(@RequestBody @Validated SelectDto selectDto) {
         String defaultSelectQuery = selectService.createDefaultSelect(
                 selectDto.getTableName(),

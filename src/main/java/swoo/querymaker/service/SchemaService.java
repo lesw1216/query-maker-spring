@@ -29,4 +29,8 @@ public class SchemaService {
 
         return sb.toString();
     }
+
+    public String createPrimaryKey(String primaryKey) {
+        return "PRIMARY KEY (" + primaryKey + ")";
+    }
 }
